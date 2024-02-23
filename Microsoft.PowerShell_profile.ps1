@@ -19,23 +19,27 @@ Set-PSReadLineKeyHandler -Key "Ctrl+p" -Function HistorySearchBackward # 设置�
 Set-PSReadLineKeyHandler -Key "Ctrl+n" -Function HistorySearchForward # 设置向下键为前向搜索历史纪录
 
 # eza
- function Get-DirectoryContent {
-     eza --classify --color-scale --icons=always --group-directories-first --time-style iso @args
- }
- Remove-Alias -Name ls
- New-Alias -Name ls -Value Get-DirectoryContent
- function Get-DetailedDirectoryContent {
-     Get-DirectoryContent --long @args
- }
- New-Alias -Name ll -Value Get-DetailedDirectoryContent
- function Get-GitIgnoredDirectoryContent {
-     Get-DirectoryContent --git-ignore --git --git-repos @args
- }
- New-Alias -Name lsg -Value Get-GitIgnoredDirectoryContent
- function Get-DetialedGitIgnoredDirectoryContent {
-     Get-GitIgnoredDirectoryContent --long @args
- }
- New-Alias -Name llg -Value Get-DetialedGitIgnoredDirectoryContent
+function Get-DirectoryContent
+{
+  eza --classify --color-scale --icons=always --group-directories-first --time-style iso @args
+}
+Remove-Alias -Name ls
+New-Alias -Name ls -Value Get-DirectoryContent
+function Get-DetailedDirectoryContent
+{
+  Get-DirectoryContent --long @args
+}
+New-Alias -Name ll -Value Get-DetailedDirectoryContent
+function Get-GitIgnoredDirectoryContent
+{
+  Get-DirectoryContent --git-ignore --git --git-repos @args
+}
+New-Alias -Name lsg -Value Get-GitIgnoredDirectoryContent
+function Get-DetialedGitIgnoredDirectoryContent
+{
+  Get-GitIgnoredDirectoryContent --long @args
+}
+New-Alias -Name llg -Value Get-DetialedGitIgnoredDirectoryContent
 
 # psfzf
 Set-PsFzfOption -PSReadLineChordProvider ‘Ctrl+f’ -PSReadLineChordReverseHistory ‘Ctrl+r’
@@ -62,13 +66,17 @@ Set-PSReadlineKeyHandler -Chord "Ctrl+f" -ScriptBlock {
 Set-PSReadlineKeyHandler -Chord "Ctrl+e" -ScriptBlock {
   [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
   [Microsoft.PowerShell.PSConsoleReadLine]::Insert('$fzfAndVim = fzf ; cd $fzfAndVim\.. ; nvim ($fzfAndVim -split "\\" | tail -1)')
- # [Microsoft.PowerShell.PSConsoleReadLine]::Insert('cd "$(fzf)\.."')
   [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
 }
 
 Set-PSReadlineKeyHandler -Chord "Ctrl+o" -ScriptBlock {
   [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
   [Microsoft.PowerShell.PSConsoleReadLine]::Insert('explorer .')
- # [Microsoft.PowerShell.PSConsoleReadLine]::Insert('cd "$(fzf)\.."')
+  [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
+}
+
+Set-PSReadlineKeyHandler -Chord "Ctrl+g" -ScriptBlock {
+  [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
+  [Microsoft.PowerShell.PSConsoleReadLine]::Insert('lazygit')
   [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
 }
