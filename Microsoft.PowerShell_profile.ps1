@@ -62,13 +62,17 @@ Set-PSReadlineKeyHandler -Chord "Ctrl+f" -ScriptBlock {
 Set-PSReadlineKeyHandler -Chord "Ctrl+e" -ScriptBlock {
   [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
   [Microsoft.PowerShell.PSConsoleReadLine]::Insert('$fzfAndVim = fzf ; cd $fzfAndVim\.. ; nvim ($fzfAndVim -split "\\" | tail -1)')
- # [Microsoft.PowerShell.PSConsoleReadLine]::Insert('cd "$(fzf)\.."')
   [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
 }
 
 Set-PSReadlineKeyHandler -Chord "Ctrl+o" -ScriptBlock {
   [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
   [Microsoft.PowerShell.PSConsoleReadLine]::Insert('explorer .')
- # [Microsoft.PowerShell.PSConsoleReadLine]::Insert('cd "$(fzf)\.."')
+  [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
+}
+
+Set-PSReadlineKeyHandler -Chord "Ctrl+g" -ScriptBlock {
+  [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
+  [Microsoft.PowerShell.PSConsoleReadLine]::Insert('lazygit')
   [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
 }
