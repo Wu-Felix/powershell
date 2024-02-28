@@ -6,6 +6,11 @@ Import-Module posh-git
 Import-Module Z
 # 引入 PSFzf
 Import-Module PSFzf
+
+Import-Module (Get-Command 'gsudoModule.psd1').Source
+
+Set-alias 'sudo' 'gsudo'
+
 Invoke-Expression (&starship init powershell)
 # oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\catppuccin.omp.json" | Invoke-Expression
 oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\my_catppuccin.omp.json" | Invoke-Expression
