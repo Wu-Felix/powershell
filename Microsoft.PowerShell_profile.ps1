@@ -13,7 +13,7 @@ Set-alias 'sudo' 'gsudo'
 
 Invoke-Expression (&starship init powershell)
 # oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\catppuccin.omp.json" | Invoke-Expression
-oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\my_catppuccin.omp.json" | Invoke-Expression
+oh-my-posh init pwsh --config "C:\Users\Administrator\Documents\PowerShell\my_catppuccin.omp.json" | Invoke-Expression
 # 设置预测文本来源为历史记录
 Set-PSReadLineOption -PredictionSource History
 # # 每次回溯输入历史，光标定位于输入内容末尾
@@ -24,23 +24,27 @@ Set-PSReadLineKeyHandler -Key "Ctrl+p" -Function HistorySearchBackward # 设置�
 Set-PSReadLineKeyHandler -Key "Ctrl+n" -Function HistorySearchForward # 设置向下键为前向搜索历史纪录
 
 # eza
- function Get-DirectoryContent {
-     eza --classify --color-scale --icons=always --group-directories-first --time-style iso @args
- }
- Remove-Alias -Name ls
- New-Alias -Name ls -Value Get-DirectoryContent
- function Get-DetailedDirectoryContent {
-     Get-DirectoryContent --long @args
- }
- New-Alias -Name ll -Value Get-DetailedDirectoryContent
- function Get-GitIgnoredDirectoryContent {
-     Get-DirectoryContent --git-ignore --git --git-repos @args
- }
- New-Alias -Name lsg -Value Get-GitIgnoredDirectoryContent
- function Get-DetialedGitIgnoredDirectoryContent {
-     Get-GitIgnoredDirectoryContent --long @args
- }
- New-Alias -Name llg -Value Get-DetialedGitIgnoredDirectoryContent
+function Get-DirectoryContent
+{
+  eza --classify --color-scale --icons=always --group-directories-first --time-style iso @args
+}
+Remove-Alias -Name ls
+New-Alias -Name ls -Value Get-DirectoryContent
+function Get-DetailedDirectoryContent
+{
+  Get-DirectoryContent --long @args
+}
+New-Alias -Name ll -Value Get-DetailedDirectoryContent
+function Get-GitIgnoredDirectoryContent
+{
+  Get-DirectoryContent --git-ignore --git --git-repos @args
+}
+New-Alias -Name lsg -Value Get-GitIgnoredDirectoryContent
+function Get-DetialedGitIgnoredDirectoryContent
+{
+  Get-GitIgnoredDirectoryContent --long @args
+}
+New-Alias -Name llg -Value Get-DetialedGitIgnoredDirectoryContent
 
 # psfzf
 Set-PsFzfOption -PSReadLineChordProvider ‘Ctrl+f’ -PSReadLineChordReverseHistory ‘Ctrl+r’
