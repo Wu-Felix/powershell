@@ -6,9 +6,14 @@ Import-Module posh-git
 Import-Module Z
 # 引入 PSFzf
 Import-Module PSFzf
+
+Import-Module (Get-Command 'gsudoModule.psd1').Source
+
+Set-alias 'sudo' 'gsudo'
+
 Invoke-Expression (&starship init powershell)
 # oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\catppuccin.omp.json" | Invoke-Expression
-oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\my_catppuccin.omp.json" | Invoke-Expression
+oh-my-posh init pwsh --config "C:\Users\25757\Documents\PowerShell\my_catppuccin.omp.json" | Invoke-Expression
 # 设置预测文本来源为历史记录
 Set-PSReadLineOption -PredictionSource History
 # # 每次回溯输入历史，光标定位于输入内容末尾
