@@ -1,3 +1,5 @@
-Modules/
 Scripts/
 powershell.config.json
+Modules/PSFzf/
+Modules/posh-git/
+Modules/z/
